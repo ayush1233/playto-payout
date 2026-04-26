@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ("idempotency_key", models.CharField(db_index=True, max_length=255)),
                 ("created_at", models.DateTimeField(auto_now_add=True)),
                 ("updated_at", models.DateTimeField(auto_now=True)),
-                ("processing_started_at", models.DateTimeField(null=False)),
+                ("processing_started_at", models.DateTimeField(blank=True, null=True)),
                 (
                     "bank_account",
                     models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="merchants.bankaccount"),
@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "payout",
-                    models.ForeignKey(null=False, on_delete=django.db.models.deletion.PROTECT, related_name="ledger_entries", to="payouts.payout"),
+                    models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, related_name="ledger_entries", to="payouts.payout"),
                 ),
             ],
             options={"ordering": ["-created_at"]},
