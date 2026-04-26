@@ -13,10 +13,8 @@ def _available_balance_for_locked_merchant(merchant):
 
 def create_payout_request(merchant, amount_paise, bank_account, idempotency_key):
     with transaction.atomic():
-        # Lock later
-        locked_merchant = merchant
-        available_balance = _available_balance_for_locked_merchant(locked_merchant)
         locked_merchant = Merchant.objects.select_for_update().get(id=merchant.id)
+        available_balance = _available_balance_for_locked_merchant(locked_merchant)
 
         if available_balance < amount_paise:
             raise InsufficientFundsError(available_balance, amount_paise)
