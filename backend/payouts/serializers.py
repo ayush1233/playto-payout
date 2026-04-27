@@ -5,9 +5,9 @@ from payouts.models import Payout
 
 
 class PayoutSerializer(serializers.ModelSerializer):
-    merchant_id = serializers.CharField(source="merchant.id", read_only=True)
-    bank_account_id = serializers.CharField(source="bank_account.id", read_only=True)
-    amount_paise = serializers.CharField()
+    merchant_id = serializers.IntegerField(source="merchant.id", read_only=True)
+    bank_account_id = serializers.IntegerField(source="bank_account.id", read_only=True)
+    amount_paise = serializers.IntegerField()
     bank_account = BankAccountSerializer(read_only=True)
 
     class Meta:
@@ -28,5 +28,5 @@ class PayoutSerializer(serializers.ModelSerializer):
 
 
 class CreatePayoutSerializer(serializers.Serializer):
-    amount_paise = serializers.CharField(min_value=1)
-    bank_account_id = serializers.CharField()
+    amount_paise = serializers.IntegerField(min_value=1)
+    bank_account_id = serializers.IntegerField()
