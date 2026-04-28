@@ -1,6 +1,6 @@
 import threading
 
-from django.test import TestCase, TestCase
+from django.test import TestCase, TransactionTestCase
 
 from core.exceptions import InsufficientFundsError
 from merchants.models import BankAccount, Merchant
@@ -42,7 +42,7 @@ class PayoutServiceTest(TestCase):
         )
 
 
-class ConcurrentPayoutTest(TestCase):
+class ConcurrentPayoutTest(TransactionTestCase):
     reset_sequences = True
 
     def setUp(self):
