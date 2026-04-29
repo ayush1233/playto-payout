@@ -107,4 +107,7 @@ docker compose run --rm web python manage.py test
 cd frontend && npm run build
 ```
 
-No live deployment URL has been configured in this workspace.
+Frontend preview: `https://playto-payout-gules.vercel.app`
+
+The Django API and Celery worker should be deployed separately on a backend host
+such as Railway, Render, Fly.io, or Koyeb with PostgreSQL and Redis attached.
