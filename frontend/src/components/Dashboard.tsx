@@ -236,7 +236,7 @@ export function Dashboard() {
                     {entry.entry_type}
                   </Badge>,
                   entry.description,
-                  entry.amount,
+                  formatMoney(entry.amount),
                 ])}
               />
             </section>
